@@ -1,0 +1,30 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chow Town Secrets</title>
+  <link rel="stylesheet" href="{% static 'recipes/css/style.css' %}">
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">CHOW TOWN SECRETS</div>
+    <nav>
+      <a href="{% url 'recipes-login' %}">Sign In</a>
+      <a href="#">Home</a>
+      <a href="#">Reviews</a>
+      <a href="#">Region</a>
+    </nav>
+  </header>
+  <div>
+      {% block content%}
+      {%  endblock content %}
+  </div>
+
+</body>

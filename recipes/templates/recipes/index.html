@@ -1,0 +1,66 @@
+{% extends "recipes/_base.html" %}
+{% load static%}
+{% block content%}
+  <!-- Hero -->
+  <section class="hero" style="background-image: url('{% static 'recipes/images/dan-gold-4_jhDO54BYg-unsplash.jpg' %}');">
+    <div class="overlay">
+      <h1>Greatest African cuisines at your fingertips!</h1>
+      <div class="search-bar">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuisines -->
+  <section class="cuisines">
+    <h2>FEAUTURED CUISINES</h2>
+    <div class="cards">
+      <div class="card">
+         <img src="{% static 'recipes/images/food1.jpg' %}" alt="Beans">
+        <h3>Beans</h3>
+      </div>
+      <div class="card">
+         <img src="{% static 'recipes/images/food2.jpg' %}" alt="Swallow">
+        <h3>Swallow</h3>
+      </div>
+      <div class="card">
+         <img src="{% static 'recipes/images/food3.jpg' %}" alt="Rice">
+        <h3>Rice</h3>
+      </div>
+      <div class="card">
+         <img src="{% static 'recipes/images/food4.jpg' %}" alt="Pepper Soup">
+        <h3>Pepper Soup</h3>
+      </div>
+      <div class="card">
+         <img src="{% static 'recipes/images/food5.jpg' %}" alt="Jollof">
+        <h3>Jollof</h3>
+      </div>
+    </div>
+    <button class="more-btn">More</button>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <h2>USER REVIEWS</h2>
+    <div class="review-box">
+      <div class="text">
+        <h4>Name: Justice Fosu</h4>
+        <p>I preferred the fried rice recipe to the jollof even though it is apparently less popular. It tasted amazing and I loved the culture in the colours and aroma. Highly recommended!</p>
+      </div>
+    </div>
+
+    <div class="review-box">
+      <div class="text">
+        <h4>Name: Isaac Emmanuel</h4>
+        <p>I’ve tried many Nigerian cuisines before but Egusi soup is top-tier. It was intimidating to prepare but I’m now proud of myself! Can't wait to share with family.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 All Rights Reserved — ChowTown Secrets</p>
+  </footer>
+{%  endblock %}
+
