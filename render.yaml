@@ -12,6 +12,8 @@ services:
       - key: DJANGO_SUPERUSER_EMAIL
         value: chefjay@example.com
     preDeployCommand: |
+      cd chowtownsecrets
       python manage.py migrate --noinput
       python manage.py collectstatic --noinput
-      python manage.py loaddata db.json
+      python manage.py createsuperuser --noinput || true
+    
