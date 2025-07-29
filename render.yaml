@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: chowtown
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: >
+      python manage.py migrate --noinput &&
+      python manage.py loaddata db.json &&
+      python manage.py collectstatic --noinput &&
+      gunicorn chowtown.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chowtownsecrets
+          property: connectionString
