@@ -12,23 +12,26 @@
   <div class="container" id="container">
     <!-- Sign Up Form -->
     <div class="form-container sign-up-container">
-      <form id="signup-form">
-        <h2>Create Account</h2>
-        <input type="text" placeholder="Username" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <button>Sign Up</button>
-      </form>
+        <h3>Sign up here.</h3>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ register_form.username }}
+            {{ register_form.email }}
+            {{ register_form.password1 }}
+            {{ register_form.password2 }}
+
+            <button type="submit" name="signup">Sign Up</button>
+        </form>
     </div>
 
     <!-- Sign In Form -->
     <div class="form-container sign-in-container">
-      <form id="signin-form">
-        <h2>Sign in</h2>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <button>Sign In</button>
-      </form>
+        <h3>Login here.</h3>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+            <button type="submit" name="login">Log In</button>
+        </form>
     </div>
 
     <!-- Sliding Overlay -->

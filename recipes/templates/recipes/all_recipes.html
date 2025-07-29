@@ -1,0 +1,23 @@
+{% extends 'recipes/_base.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="product-grid-container" >
+    <div class="search-bar">
+        <form method="get" action="{% url 'all-recipes' %}">
+          <input type="text" name="q" placeholder="Search recipes..." value="{{ request.GET.q}}">
+          <button type="submit">Search</button>
+        </form>
+    </div>
+    {% for recipe in recipes %}
+    <a href="{% url 'recipe-detail' recipe.pk %}">
+      <div class="product-grid">
+          <div class="product-card">
+            <img src="{{ recipe.image.url }}" alt="image of {{ recipe.title }}" />
+            <div class="product-label">{{ recipe.title }}</div>
+          </div>
+      {% endfor %}
+      </div>
+    </a>
+  </main>
+{% endblock %}

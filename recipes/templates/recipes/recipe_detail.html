@@ -1,0 +1,56 @@
+{% extends 'recipes/_base.html' %}
+{% load humanize %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'recipes/css/recipe_detail.css' %}">
+ <main class="recipe-section">
+    <section class="left-panel">
+      <div class="image-box" style="background-image: url('{{ recipe.image.url }}');"></div>
+
+      <div class="ingredients-card">
+        <h2>Ingredients</h2>
+        <p>{{ recipe.description|linebreaks }}</p>
+      </div>
+    </section>
+
+    <section class="right-panel">
+      <div class="procedure-card">
+        <h2>Step-by-Step Procedure</h2>
+        <p>{{ recipe.description}}</p>
+      </div>
+    </section>
+  </main>
+
+{% if user.is_authenticated %}
+  <div class="review-header" style="margin-top: 2rem; text-align: center;">
+    <a href="{% url 'add-review' recipe.id %}" class="btn-primary" style="padding: 0.6rem 1.2rem; background-color: #f04e23; color: white; border-radius: 5px; text-decoration: none;">
+      Write a Review
+    </a>
+  </div>
+
+  <div class="review-list" style="margin-top: 2rem;">
+    {% for review in recipe.reviews.all %}
+      <div class="review-box" >
+        <p style="font-size: 1rem; color: #333;">{{ review.text }}</p>
+        <small style="display: block; margin-top: 0.5rem; color: #777;">by <strong>{{ review.user.username }}</strong></small>
+
+        {% if review.user == user %}
+          <div class="review-actions" style="margin-top: 1rem;">
+            <a href="{% url 'update-review' review.id %}" style="margin-right: 1rem; color: #0066cc; text-decoration: none;">Edit</a>
+            <a href="{% url 'delete-review' review.id %}" style="color: #cc0000; text-decoration: none;">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p style="color: #555;">No reviews yet. Be the first to review!</p>
+    {% endfor %}
+  </div>
+
+{% else %}
+  <p style="margin-top: 2rem; color: #333;">
+    <a href="{% url 'recipes-signup' %}" style="color: #f04e23; text-decoration: none; font-weight: 600;">Login</a> to write a review.
+  </p>
+{% endif %}
+
+
+{% endblock %}
