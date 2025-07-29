@@ -10,7 +10,7 @@ services:
       - key: DJANGO_SUPERUSER_PASSWORD
         value: 1q2w3e4r1234
       - key: DJANGO_SUPERUSER_EMAIL
-        value: jay@example.com
+        value: chefjay@example.com
     preDeployCommand: |
       python manage.py migrate --noinput
       python manage.py collectstatic --noinput
