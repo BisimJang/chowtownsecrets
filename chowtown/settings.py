@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     'recipes',
     'django.contrib.humanize',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
