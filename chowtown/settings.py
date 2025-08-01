@@ -36,10 +36,10 @@ if os.environ.get('DATABASE_URL'):
 SECRET_KEY = 'django-insecure-$!vd^9$&^2c(2$78&s7&h!&8lbuh4ejw2yk%ry6khp1=fevav!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['chowtownsecrets.onrender.com', 'localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = []
+#'https://bisim.pythonanywhere.com/'
 
 
 # Application definition

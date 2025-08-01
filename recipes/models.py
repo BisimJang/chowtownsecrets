@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Recipe(models.Model):
     title = models.CharField(max_length=15)
+    ingredients = models.TextField()
     description = models.TextField()
     image = models.ImageField(upload_to='recipes/')
     created_at = models.DateTimeField(auto_now_add=True)
