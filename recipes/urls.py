@@ -1,18 +1,15 @@
-from django.http import request
 from django.urls import path
-from .views import home_page, login_signup, login, all_reviews, all_recipes, recipe_detail, custom_logout, \
-    create_review, delete_review, update_review
-from django.contrib.auth.views import LoginView
-
+from .views import RecipeList, ReviewCreateView, RecipeReviewList, RecipeDetail, RecipeCreateView, \
+    RetrieveUpdateDestroyRecipe, RetrieveUpdateDestroyReview
 
 urlpatterns = [
-    path('', home_page, name='recipes-home'),
-    path('auth/', login_signup, name='recipes-signup'),
-    path('recipe-detail/<int:recipe_id>/', recipe_detail, name='recipe-detail'),
-    path('add-review/<int:recipe_id>/', create_review, name='add-review'),
-    path('review/<int:review_id>/edit/', update_review, name='update-review'),
-    path('review/<int:review_id>/delete/', delete_review, name='delete-review'),
-    path('all-reviews/', all_reviews, name='all-reviews'),
-    path('all-recipes/', all_recipes, name='all-recipes'),
-    path('logout/',custom_logout, name='logout'),
+    #api_views
+    path('api/recipes/',RecipeList.as_view(), name='list-recipes'), # returns all recipes
+    path('api/recipes/<int:id>',RecipeDetail.as_view(), name='recipe-detail'), # returns a specific recipe
+    path('api/recipes/<int:recipe_id>/reviews',RecipeReviewList.as_view(), name='recipe-reviews'), # returns the reviews for a recipe using the id,
+    path('api/recipes/create', RecipeCreateView.as_view(), name='create-recipe'), # create review
+    path('api/recipes/<int:id>/edit/', RetrieveUpdateDestroyRecipe.as_view(), name='edit-recipe'),
+    path('api/recipes/<int:recipe_id>/create-review', ReviewCreateView.as_view(), name='create-review'), # create review
+    path('api/recipes/<int:id>/edit-review/', RetrieveUpdateDestroyReview.as_view(), name='edit-recipe'),
 ]
+

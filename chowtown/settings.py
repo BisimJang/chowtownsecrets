@@ -25,7 +25,7 @@ DATABASES = {
     }
 }
 
-# Use DATABASE_URL if available (e.g. in production on Render)
+# Use DATABASE_URL if available (Example in production on Render)
 if os.environ.get('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
@@ -51,13 +51,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'corsheaders',
     'recipes',
     'django.contrib.humanize',
     'rest_framework',
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -141,3 +143,5 @@ LOGOUT_REDIRECT_URL = '.recipes/recipes-home'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+CORS_ALLOW_ALL_ORIGINS = True
