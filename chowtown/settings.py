@@ -1,5 +1,8 @@
 import dj_database_url
 import os
+
+from django.conf.global_settings import CSRF_TRUSTED_ORIGINS
+
 """
 Django settings for chowtown project.
 
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'accounts',
     'recipes',
     'django.contrib.humanize',
     'rest_framework',
@@ -144,4 +148,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+CSRF_TRUSTED_ORIGINS=['http://localhost:3000']
+
+AUTH_USER_MODEL = 'accounts.CustomUser'

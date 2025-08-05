@@ -33,7 +33,9 @@ class RecipeCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        if not self.request.user.is_chef:
+            raise PermissionDenied("Only chefs can create recipes.")
+        serializer.save(chef=self.request.user)
 
 # Retrieve, update, delete a Recipe
 class RetrieveUpdateDestroyRecipe(generics.RetrieveUpdateDestroyAPIView):
@@ -80,3 +82,11 @@ class RetrieveUpdateDestroyReview(generics.RetrieveUpdateDestroyAPIView):
         if self.request.user != instance.user:
             raise PermissionDenied("You can only delete your own review.")
         instance.delete()
+
+# Chef recipe list for currently logged in chef
+class ChefRecipeList(generics.ListAPIView):
+    serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Recipe.objects.filter(chef=self.request.user)

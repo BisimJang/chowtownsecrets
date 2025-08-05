@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import RecipeList, ReviewCreateView, RecipeReviewList, RecipeDetail, RecipeCreateView, \
-    RetrieveUpdateDestroyRecipe, RetrieveUpdateDestroyReview
+    RetrieveUpdateDestroyRecipe, RetrieveUpdateDestroyReview, ChefRecipeList
 
 urlpatterns = [
     #api_views
@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/recipes/<int:id>/edit/', RetrieveUpdateDestroyRecipe.as_view(), name='edit-recipe'),
     path('api/recipes/<int:recipe_id>/create-review', ReviewCreateView.as_view(), name='create-review'), # create review
     path('api/recipes/<int:id>/edit-review/', RetrieveUpdateDestroyReview.as_view(), name='edit-recipe'),
+    path('api/recipes/chef',ChefRecipeList.as_view(), name='chef-recipes'), # recipes for currently logged in chef
 ]
 
